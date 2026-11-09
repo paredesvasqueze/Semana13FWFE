@@ -1,8 +1,19 @@
 import { useEffect, useState } from "react"
-export default function CardProducto({id,category,name, stock, imageUrl,eliminar} )
+export default function CardProducto({id,category,name, stock, imageUrl,eliminar, editar } )
 {
 
 const [mensaje, setMensaje] = useState("");
+
+function editarProducto(){    
+  editar({
+    id : id,
+    category: category,
+    name: name,
+    stock: stock,
+    imageUrl: imageUrl
+  });
+}
+
 
     return(
         <article className="product-card">
@@ -25,6 +36,8 @@ const [mensaje, setMensaje] = useState("");
     <button onClick={()=>{setMensaje("Eliminando Porfavor Espere");
          eliminar(id)
          }  } >Eliminar</button>   
+
+    <button onClick={editarProducto}>Editar</button>
     </article>
     )
 

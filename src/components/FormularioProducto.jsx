@@ -1,6 +1,6 @@
-import { useState } from "react"
+import { useEffect, useEffectEvent, useState } from "react"
 
-export default function FormularioProducto({guardar})
+export default function FormularioProducto({productoEditar, guardar})
 {
 const [formulario,setFormulario] = useState(
     {
@@ -24,11 +24,15 @@ function manejarcambio(e)
 
 function agregar(e)
 {
-    e.preventDefault();
+    e.preventDefault();        
     console.log(formulario);
     guardar(formulario);
 }
 
+useEffect(()=>{
+    if (productoEditar.id>0)
+    setFormulario(productoEditar);
+ },[productoEditar])
 
 return (
     <>
